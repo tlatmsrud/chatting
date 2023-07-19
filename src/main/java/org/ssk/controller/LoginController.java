@@ -27,9 +27,9 @@ public class LoginController {
         return "/login.html";
     }
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public void login(@RequestBody String nickname){
+    public String login(String nickname){
         log.info("nickname : "+ nickname);
         loginService.login(nickname);
+        return "redirect:/chat";
     }
 }

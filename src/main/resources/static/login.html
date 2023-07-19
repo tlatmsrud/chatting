@@ -4,15 +4,12 @@
     <title>Hello Chat</title>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="/login.js"></script>
-<script>
-
-
-</script>
 <body>
 
 <h1>로그인</h1>
-<p>Nickname : <input id = "nickname" type = "text"/></p>
-<button onclick="login()" id = "login-btn">로그인</button>
+<form method="post" action="/api/login" id="login-form">
+    Input nickname : <input type="text" id = "nickname" name = "nickname" />
+    <input type="submit" value="Login"/>
+</form>
 </body>
 </html>

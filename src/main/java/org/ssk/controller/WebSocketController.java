@@ -22,7 +22,7 @@ public class WebSocketController {
 
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    @GetMapping("/chat-page")
+    @GetMapping("/chat")
     public String getChatPage(){
         return "chat.html";
     }
