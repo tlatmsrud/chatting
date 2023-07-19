@@ -1,6 +1,8 @@
 server:
-  port: 9999
+  port: 1234
 spring:
+  profiles:
+    include: oauth2, jwt
   jpa:
     hibernate:
       ddl-auto: create
