@@ -20,7 +20,7 @@ function connect() {
         setConnected(true);
         console.log('Connected: ' + frame);
         stompClient.subscribe('/topic/'+roomId, function (greeting) {
-            showGreeting(JSON.parse(greeting.body));
+            showGreeting(greeting.body);
         });
     });
 }
@@ -40,7 +40,7 @@ function sendMessage() {
     messageObj.writerId = loginId
     messageObj.message = $("#message").val();
 
-    stompClient.send("/app/send", {}, JSON.stringify(messageObj));
+    stompClient.send("/app/send" ,{}, JSON.stringify(messageObj));
 }
 
 function getRoomId(){
@@ -86,7 +86,6 @@ $(function () {
 
     loginId = jsonData["id"]
     roomId = getRoomId();
-    alert(roomId+ " " +loginId)
     $("form").on('submit', function (e) {
         e.preventDefault();
     });
