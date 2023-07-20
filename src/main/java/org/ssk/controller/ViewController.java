@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 
 @Controller
-@RequestMapping("/view")
 public class ViewController {
 
     @GetMapping("/chat")
     public String getChatPage(){
         return "chat.html";
+    }
+
+    @GetMapping("/list")
+    public String getMemberPage(){
+        return "list.html";
     }
 }
