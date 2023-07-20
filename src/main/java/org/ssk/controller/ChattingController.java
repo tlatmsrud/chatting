@@ -20,10 +20,10 @@ public class ChattingController {
 
     private final ChattingService chattingService;
 
-    @PostMapping("/room")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Long createChattingRoom(@RequestBody ChattingRoomDto.Create request){
-        return chattingService.createChattingRoom(request);
+    @GetMapping("/room")
+    @ResponseStatus(HttpStatus.OK)
+    public Long getChattingRoom(@RequestBody ChattingRoomDto request){
+        return chattingService.getChattingRoom(request);
     }
 
 }
