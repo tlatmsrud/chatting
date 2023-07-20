@@ -1,11 +1,9 @@
 package org.ssk.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.ssk.dto.ChatDto;
 
@@ -25,6 +23,6 @@ public class WebSocketController {
 
     @MessageMapping("/send")
     public void send(@RequestBody ChatDto chatDto){
-        simpMessagingTemplate.convertAndSend("/topic/"+chatDto.getRoomId(), chatDto.getChat());
+        simpMessagingTemplate.convertAndSend("/topic/"+chatDto.getRoomId(), chatDto.getMessage());
     }
 }

@@ -13,5 +13,5 @@ import lombok.Getter;
 public class ChatDto {
     private Long roomId;
     private Long writerID;
-    private String chat;
+    private String message;
 }
