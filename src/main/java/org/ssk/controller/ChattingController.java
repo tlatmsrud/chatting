@@ -26,8 +26,7 @@ public class ChattingController {
     @GetMapping("/room")
     @ResponseStatus(HttpStatus.OK)
     public Long getChattingRoom(@LoginMemberId Long loginId, @RequestParam Long memberId){
-        System.out.println(memberId);
-        return chattingService.getChattingRoom(loginId, null);
+        return chattingService.getChattingRoom(loginId, memberId);
     }
 
     @GetMapping("/member")
