@@ -1,6 +1,14 @@
 package org.ssk.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * title        :
@@ -10,8 +18,19 @@ import lombok.Getter;
  */
 
 @Getter
-public class ChatDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class ChatDto implements Serializable {
+
+    @NotBlank
     private Long roomId;
-    private Long writerID;
+
+    @NotBlank
+    private Long writerId;
+
+    @NotNull
     private String message;
+    private String time = LocalDateTime.now().format(
+            DateTimeFormatter.ISO_LOCAL_DATE_TIME
+    );
 }
