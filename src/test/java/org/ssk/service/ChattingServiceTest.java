@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.ssk.entity.ChattingRoomEntity;
 import org.ssk.repository.ChattingRoomRepository;
+import org.ssk.repository.MemberRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -22,7 +23,8 @@ class ChattingServiceTest implements TestFixture{
 
     private ChattingRoomRepository chattingRoomRepository = mock(ChattingRoomRepository.class);
 
-    private final ChattingService chattingService = new ChattingService(chattingRoomRepository);
+    private MemberRepository memberRepository = mock(MemberRepository.class);
+    private final ChattingService chattingService = new ChattingService(chattingRoomRepository,memberRepository);
 
     @BeforeEach
     void setUp(){
@@ -35,7 +37,7 @@ class ChattingServiceTest implements TestFixture{
     @Test
     @DisplayName("채팅방 조회")
     void getChattingRoom() {
-        assertThat(chattingService.getChattingRoom(CHATTING_ROOM_DTO))
+        assertThat(chattingService.getChattingRoom(LOGIN_MEMBER_ID, VALID_MEMBER_ID))
                 .isEqualTo(CHATTING_ROOM_ID_FOR_LOGIN_MEMBER_AND_VALID_MEMBER);
     }
 

@@ -44,7 +44,7 @@ class ChattingControllerTest implements TestFixture {
 
     @BeforeEach
     void setUp(){
-        given(chattingService.getChattingRoom(any(ChattingRoomDto.class)))
+        given(chattingService.getChattingRoom(LOGIN_MEMBER_ID, VALID_MEMBER_ID))
                 .willReturn(CHATTING_ROOM_ID_FOR_LOGIN_MEMBER_AND_VALID_MEMBER);
 
     }
