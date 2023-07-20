@@ -1,11 +1,12 @@
 package org.ssk.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.ssk.dto.ChatDto;
+import org.ssk.service.WebSocketService;
 
 /**
  * title        :
@@ -16,13 +17,13 @@ import org.ssk.dto.ChatDto;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class WebSocketController {
 
-    private final SimpMessagingTemplate simpMessagingTemplate;
-
+    private final WebSocketService webSocketService;
 
     @MessageMapping("/send")
     public void send(@RequestBody ChatDto chatDto){
-        simpMessagingTemplate.convertAndSend("/topic/"+chatDto.getRoomId(), chatDto.getMessage());
-    }
+        webSocketService.send(chatDto);
+   }
 }
