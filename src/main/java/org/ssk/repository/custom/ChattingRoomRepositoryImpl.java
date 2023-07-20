@@ -23,16 +23,13 @@ public class ChattingRoomRepositoryImpl implements ChattingRoomRepositoryCustom{
         return queryFactory.select(chattingRoomEntity.id)
                 .from(chattingRoomEntity)
                 .where(
-                        eqFromMemberId(fromMemberId)
-                        ,eqToMemberId(toMemberId)
+                        eqMemberId(fromMemberId, toMemberId)
                 ).fetchOne();
     }
 
-    public BooleanExpression eqFromMemberId(Long fromMemberId){
-        return fromMemberId == null ? null : chattingRoomEntity.fromMemberId.eq(fromMemberId);
-    }
-
-    public BooleanExpression eqToMemberId(Long toMemberId){
-        return toMemberId == null ? null : chattingRoomEntity.toMemberId.eq(toMemberId);
+    public BooleanExpression eqMemberId(Long fromMemberId, Long toMemberId){
+        return fromMemberId == null || toMemberId == null ? null :
+                chattingRoomEntity.fromMemberId.eq(fromMemberId).and(chattingRoomEntity.toMemberId.eq(toMemberId))
+                        .or(chattingRoomEntity.fromMemberId.eq(toMemberId).and(chattingRoomEntity.toMemberId.eq(fromMemberId)));
     }
 }
