@@ -3,6 +3,7 @@ package org.ssk.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.ssk.entity.MemberEntity;
+import org.ssk.repository.custom.MemberRepositoryCustom;
 
 /**
  * title        :
