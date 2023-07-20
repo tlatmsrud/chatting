@@ -8,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.ssk.entity.MemberEntity;
 import org.ssk.provider.JwtProvider;
 import org.ssk.repository.MemberRepository;
@@ -19,7 +18,6 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-import static org.springframework.http.HttpHeaders.SET_COOKIE;
 
 /**
  * title        : Custom AuthenticationSuccessHandler
@@ -54,7 +52,7 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         String accessToken = jwtProvider.generateAccessToken(claims);
 
         AddAccessTokenToCookie(response, accessToken);
-        responseRedirectUrl(request, response, accessToken);
+        responseRedirectUrl(request, response);
     }
 
     public void AddAccessTokenToCookie(HttpServletResponse response, String accessToken){
@@ -90,10 +88,9 @@ public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         return memberRepository.save(memberEntity);
     }
 
-    public void responseRedirectUrl(HttpServletRequest request, HttpServletResponse response,
-                                    String accessToken) throws IOException {
+    public void responseRedirectUrl(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-        getRedirectStrategy().sendRedirect(request, response, "/chat");
+        getRedirectStrategy().sendRedirect(request, response, "/list");
     }
 
 }
