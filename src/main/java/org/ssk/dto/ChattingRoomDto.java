@@ -12,14 +12,12 @@ import lombok.NoArgsConstructor;
  */
 
 @Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class ChattingRoomDto {
 
+    private Long fromMemberId;
+    private Long toMemberId;
 
-    @Getter
-    @AllArgsConstructor
-    @NoArgsConstructor
-    public static class Create{
-        private Long fromMemberId;
-        private Long toMemberId;
-    }
+
 }

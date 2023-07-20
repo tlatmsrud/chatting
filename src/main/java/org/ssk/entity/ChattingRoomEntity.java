@@ -1,7 +1,10 @@
 package org.ssk.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 /**
  * title        :
@@ -12,6 +15,9 @@ import lombok.Getter;
 
 @Entity
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "TBL_CHATTING_ROOM")
 public class ChattingRoomEntity {
 
