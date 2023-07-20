@@ -1,4 +1,4 @@
-package org.ssk.repository;
+package org.ssk.repository.custom;
 
 
 import org.ssk.entity.MemberEntity;
