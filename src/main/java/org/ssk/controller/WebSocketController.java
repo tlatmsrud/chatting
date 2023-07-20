@@ -22,10 +22,6 @@ public class WebSocketController {
 
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    @GetMapping("/chat")
-    public String getChatPage(){
-        return "chat.html";
-    }
 
     @MessageMapping("/send")
     public void send(@RequestBody ChatDto chatDto){
