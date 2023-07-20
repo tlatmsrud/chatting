@@ -3,8 +3,11 @@ package org.ssk.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.ssk.dto.ChattingRoomDto;
+import org.ssk.annotation.LoginMemberId;
+import org.ssk.dto.MemberDto;
 import org.ssk.service.ChattingService;
+
+import java.util.List;
 
 /**
  * title        :
@@ -22,8 +25,15 @@ public class ChattingController {
 
     @GetMapping("/room")
     @ResponseStatus(HttpStatus.OK)
-    public Long getChattingRoom(@RequestBody ChattingRoomDto request){
-        return chattingService.getChattingRoom(request);
+    public Long getChattingRoom(@LoginMemberId Long loginId, @RequestParam Long memberId){
+        System.out.println(memberId);
+        return chattingService.getChattingRoom(loginId, null);
+    }
+
+    @GetMapping("/member")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MemberDto> getMemberList(){
+        return chattingService.getMemberList();
     }
 
 }

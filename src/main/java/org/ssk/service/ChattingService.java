@@ -3,9 +3,14 @@ package org.ssk.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.ssk.dto.ChattingRoomDto;
+import org.ssk.dto.MemberDto;
 import org.ssk.entity.ChattingRoomEntity;
+import org.ssk.entity.MemberEntity;
 import org.ssk.repository.ChattingRoomRepository;
+import org.ssk.repository.MemberRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * title        :
@@ -21,22 +26,24 @@ public class ChattingService {
 
     private final ChattingRoomRepository chattingRoomRepository;
 
+    private final MemberRepository memberRepository;
     /**
      * 채팅방 조회하기
-     * @param request - 채팅방 조회 요청 Dto
+     * @param loginId - 로그인 ID
+     * @param memberId - 대화 상대방 ID
      * @return 조회 또는 생성된 채팅방 ID
      */
-    public Long getChattingRoom(ChattingRoomDto request){
+    public Long getChattingRoom(Long loginId, Long memberId){
 
-        Long roomId = findChattingRoom(request.getFromMemberId(), request.getToMemberId());
+        Long roomId = findChattingRoom(loginId, memberId);
 
         if(roomId != null){
             return roomId;
         }
 
         ChattingRoomEntity chattingRoom = ChattingRoomEntity.builder()
-            .fromMemberId(request.getFromMemberId())
-            .toMemberId(request.getToMemberId())
+            .fromMemberId(loginId)
+            .toMemberId(memberId)
             .build();
 
         return chattingRoomRepository.save(chattingRoom).getId();
@@ -50,6 +57,17 @@ public class ChattingService {
      */
     public Long findChattingRoom(Long fromMemberId, Long toMemberId){
         return chattingRoomRepository.findIdByMemberId(fromMemberId, toMemberId);
+    }
+
+    /**
+     * 모든 사용자 조회
+     * @return 모든 사용자 리스트
+     */
+    public List<MemberDto> getMemberList(){
+        List<MemberEntity> memberEntity = memberRepository.findAll();
+        return memberEntity.stream().map(
+                entity -> new MemberDto(entity.getId(), entity.getNickname(), entity.getProfileUrl()))
+                .collect(Collectors.toList());
     }
 
 }
