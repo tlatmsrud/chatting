@@ -1,8 +1,9 @@
 package org.ssk.entity;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import jakarta.persistence.*;
 import lombok.Getter;
+
+import java.time.LocalDateTime;
 
 /**
  * title        :
@@ -29,9 +30,6 @@ public class ChattingEntity extends BaseEntity {
     @Column(name = "SEND_MESSAGE")
     private String sendMessage;
 
-    @Column(name = "TO_MEMBER_ID")
-    private Long toMemberId;
-
-    @Column(name = "RECEIVE_MESSAGE")
-    private String receiveMessage;
+    @Column(name = "SEND_DATE")
+    private LocalDateTime sendTime;
 }
