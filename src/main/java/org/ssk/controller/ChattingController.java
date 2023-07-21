@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.ssk.annotation.LoginMemberId;
+import org.ssk.dto.ChatHistoryDto;
 import org.ssk.dto.MemberDto;
 import org.ssk.service.ChattingService;
 
@@ -35,4 +36,9 @@ public class ChattingController {
         return chattingService.getMemberList();
     }
 
+    @GetMapping("/history")
+    @ResponseStatus(HttpStatus.OK)
+    public List<ChatHistoryDto> getChatHistory(@RequestParam Long roomId){
+        return chattingService.getChatHistory(roomId);
+    }
 }

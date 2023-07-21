@@ -1,5 +1,9 @@
 package org.ssk.repository.custom;
 
+import org.ssk.dto.ChatHistoryDto;
+
+import java.util.List;
+
 /**
  * title        :
  * author       : sim
@@ -7,4 +11,6 @@ package org.ssk.repository.custom;
  * description  :
  */
 public interface ChattingRepositoryCustom {
+
+    List<ChatHistoryDto> findByChattingRoomId(Long roomId);
 }
