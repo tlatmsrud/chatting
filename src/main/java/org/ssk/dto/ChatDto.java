@@ -8,14 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
-/**
- * title        :
- * author       : sim
- * date         : 2023-07-19
- * description  :
- */
 
 @Getter
 @NoArgsConstructor
@@ -30,7 +23,6 @@ public class ChatDto implements Serializable {
 
     @NotNull
     private String message;
-    private String time = LocalDateTime.now().format(
-            DateTimeFormatter.ISO_LOCAL_DATE_TIME
-    );
+    private LocalDateTime time = LocalDateTime.now();
+
 }
