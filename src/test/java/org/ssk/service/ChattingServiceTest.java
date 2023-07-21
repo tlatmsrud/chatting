@@ -4,7 +4,10 @@ import attributes.TestFixture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.ssk.dto.ChatDto;
 import org.ssk.entity.ChattingRoomEntity;
+import org.ssk.repository.ChattingRepository;
 import org.ssk.repository.ChattingRoomRepository;
 import org.ssk.repository.MemberRepository;
 
@@ -24,7 +27,11 @@ class ChattingServiceTest implements TestFixture{
     private ChattingRoomRepository chattingRoomRepository = mock(ChattingRoomRepository.class);
 
     private MemberRepository memberRepository = mock(MemberRepository.class);
-    private final ChattingService chattingService = new ChattingService(chattingRoomRepository,memberRepository);
+
+    private ChattingRepository chattingRepository = mock(ChattingRepository.class);
+
+    private RedisTemplate<String, ChatDto> redisTemplate = mock(RedisTemplate.class);
+    private final ChattingService chattingService = new ChattingService(chattingRoomRepository,memberRepository,chattingRepository,redisTemplate);
 
     @BeforeEach
     void setUp(){
