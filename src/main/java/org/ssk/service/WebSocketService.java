@@ -20,7 +20,7 @@ public class WebSocketService {
     private final static String TOPIC = "/topic/";
     private final SimpMessagingTemplate simpMessagingTemplate;
 
-    private final RedisTemplate<String ,Object> redisTemplate;
+    private final RedisTemplate<String ,ChatDto> redisTemplate;
 
     public void send(ChatDto chatDto) {
         simpMessagingTemplate.convertAndSend(TOPIC+chatDto.getRoomId(), chatDto.getMessage());
