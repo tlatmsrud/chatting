@@ -9,7 +9,6 @@ function setConnected(connected) {
     else {
         $("#conversation").hide();
     }
-    $("#greetings").html("");
 }
 
 function connect() {
@@ -79,6 +78,24 @@ function decodeJwtAccessToken(accessToken) {
     return JSON.parse(decodedData);
 }
 
+function getChattingHistory(){
+    $.ajax({
+        url: "/api/chatting/history",
+        method: 'GET',
+        data: {
+            roomId : roomId
+        },
+        success: function (data) {
+            alert(JSON.stringify(data))
+            for (const object of data) {
+                showGreeting(object.message)
+            }
+        },error: function() {
+            alert('채팅방 정보를 가져오는데 실패했습니다.');
+        }
+    });
+}
+
 $(function () {
     var accessToken = getAccessTokenFromCookie();
     var jsonData = decodeJwtAccessToken(accessToken)
@@ -89,6 +106,7 @@ $(function () {
         e.preventDefault();
     });
     connect();
+    getChattingHistory();
     $( "#disconnect" ).click(function() { disconnect(); });
     $( "#send" ).click(function() { sendMessage(); });
 });
