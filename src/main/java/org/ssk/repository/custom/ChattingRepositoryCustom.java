@@ -1,5 +1,6 @@
 package org.ssk.repository.custom;
 
+import org.ssk.dto.ChatDto;
 import org.ssk.dto.ChatHistoryDto;
 
 import java.util.List;
@@ -13,4 +14,6 @@ import java.util.List;
 public interface ChattingRepositoryCustom {
 
     List<ChatHistoryDto> findByChattingRoomId(Long roomId);
+
+    void saveAllChatting(List<ChatDto> list);
 }
