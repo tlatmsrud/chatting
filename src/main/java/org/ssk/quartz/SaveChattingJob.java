@@ -40,7 +40,10 @@ public class SaveChattingJob extends QuartzJobBean {
         for(String key : keys){
             log.info("key : "+key);
             List<ChatDto> chattingList = operations.range(key, 0, -1);
-            list.addAll(chattingList);
+
+            if(chattingList != null){
+                list.addAll(chattingList);
+            }
         }
 
         log.info(list.toString());
